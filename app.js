@@ -4,8 +4,6 @@ variables
 =========
 */
 
-// var catDiv = document.getElementById('catsOnCats');
-
 /* ++++++
 specific images set to variables and collect the id from DOM
 */
@@ -22,11 +20,6 @@ var characterArray = [];
 var totalClicks = 0;
 
 var processClick = true;
-
-/*
-variables capturing the paragraph slots
-for textContent addition on show results
-*/
 
 /* ++++++
 variables for paragraph elements to be added per
@@ -62,8 +55,7 @@ calling functions
 */
 
 /* ++++++++
-calling the showRandomImg function with specific images here. Will need
-to ammend additional images
+calling the showRandomImg function with specific images here
 */
 showRandomImg(imageOne);
 showRandomImg(imageTwo);
@@ -85,7 +77,6 @@ imageOne.onclick = function() {
   for (var i = 0; i < characterArray.length; i++) {
     if (srcValue == characterArray[i].path) {
       characterArray[i].nClicks++;
-      // console.log(characterArray[i].path + " #$% " +characterArray[i].nClicks);
     }
   }
 }
@@ -114,12 +105,11 @@ imageThree.onclick = function() {
   }
 }
 
-//
 function imageClicked() {
   if (processClick) {
     totalClicks++;
 
-    //for each addition image add in code to call the image here:
+
     showRandomImg(imageOne);
     showRandomImg(imageTwo);
     showRandomImg(imageThree);
@@ -152,8 +142,6 @@ function randomImageIndex() {
 
 //function to display random image from list
 function showRandomImg(image) {
-  // var clickCount = newImage.getAttribute("src");
-  // console.log(clickCount);
 
 
   //replacing image function
@@ -187,9 +175,7 @@ event listeners
 ===============
 */
 
-/*++++++
-addin eventListener per imageNUMBER variables set at the top of the js file
-*/
+
 imageOne.addEventListener("click", imageClicked);
 imageTwo.addEventListener("click", imageClicked);
 imageThree.addEventListener("click", imageClicked);
