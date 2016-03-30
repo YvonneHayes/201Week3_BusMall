@@ -1,0 +1,39 @@
+body {
+  background-image: url("img/Background7.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+
+#myButton, #voteMore {
+  visibility: hidden;
+}
+
+#characterPic1 {
+  width: 400px;
+  height: 400px;
+  background-color: blue;
+}
+
+#characterPic2 {
+  width: 400px;
+  height: 400px;
+  background-color: blue;
+}
+
+#characterPic3 {
+  width: 400px;
+  height: 400px;
+  background-color: blue;
+}
+
+h1 {
+  font-family: 'Bangers', cursive;
+  color: red;
+  text-shadow: 0 0 3px black;
+}
+
+h2 {
+  font-family: 'Boogaloo', cursive;
+  color: purple;
+}
