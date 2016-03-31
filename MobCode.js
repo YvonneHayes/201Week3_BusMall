@@ -18,7 +18,7 @@ var storageObjectOne = new makeStorageObject(1);
 
 // Functions to fill Storage Objects
 
-var clickStore = function() {
+var storeClicks = function() {
 
   storageObjectOne.totalClicks = totalClicks;
 
@@ -57,4 +57,17 @@ var clickStore = function() {
     if (typeOf clicksChart !== 'undefined') {
       storageObjectOne.Charts = true;
     }
+}
+
+//making a function that pushes storage Object into a local storage
+
+var storageIn = function (objectName) {
+  localStorage.setItem(JSON.stringify(objectName));
+}
+
+//making function that gets storage object out of local storage
+
+var storageOut = function (objectName) {
+  var pullStorage = localStorage.getItem(JSON.parse(objectName));
+  return pullStorage;
 }
