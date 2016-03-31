@@ -371,7 +371,3 @@ displayButton.addEventListener("click", showResults);
 voteMoreButton.addEventListener("click", eightMore);
 
 resetButton.addEventListener("click", newVoteRound);
-
-// LOCAL STORAGE
-
-// Consturctor for Objects

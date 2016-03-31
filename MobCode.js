@@ -4,17 +4,17 @@ var Charts = false;
 
 // Contructor to make Storage Objects
 
-function makeStorageObject(round) {
-  this.round = round;
+function makeStorageObject() {
   this.totalClicks = 0;
   this.nClicksAll = [];
+  this.nShow = [];
   this.percentAll = [];
   this.ImagesShown = []; // 2d array
   this.voteMore = false;
   this.Charts = false;
+  this.processClick = true;
 }
 
-var storageObjectOne = new makeStorageObject(1);
 
 // Functions to fill Storage Objects
 
@@ -26,6 +26,13 @@ var storeClicks = function() {
   var nClicksAllArray = [];
   for (var i = 0; i < catArray.length; i++) {
     nClicksAllArray.push(catArray[i].nClicks);
+  }
+  storageObjectOne.nClicksAll = nClicksAllArray;
+
+// get nShown from all Image Objects
+  var nShowAllArray = [];
+  for (var i = 0; i < catArray.length; i++) {
+    nShowAllArray.push(catArray[i].nShow);
   }
   storageObjectOne.nClicksAll = nClicksAllArray;
 
@@ -53,6 +60,13 @@ var storeClicks = function() {
       storageObjectOne.voteMore = true;
     };
 
+// check if processClick is true/false
+    if (processClick) {
+      storageObjectOne.processClick = true;
+    } else {
+      storageObjectOne.processClick = false;
+    }
+
 // check if clicksChart object exists
     if (typeOf clicksChart !== 'undefined') {
       storageObjectOne.Charts = true;
@@ -71,3 +85,40 @@ var storageOut = function (objectName) {
   var pullStorage = localStorage.getItem(JSON.parse(objectName));
   return pullStorage;
 }
+
+
+
+
+
+
+// making a function that checks local storage upon each click
+
+var checkStorage = function (){
+
+  if (typeOf localStorage.getItem('storageObjectOne')!== 'undefined') {      //checks if storageObjectOne is in local storage
+      var parsedStorage = storageOut();
+
+        totalClicks = parsedStorage.totalClicks; // refills global variable totalClicks array
+        percentArray = parsedStorage.percentAll; // refills global variable percent array
+        processClick = parsedStorage.processClick; // resets global variable processClick - is needed for imageClicked function!!!
+
+      for (var i = 0; i < catArray.length; i++) {
+
+        catArray[i].nClicks = parsedStorage.nClicks[i];
+        catArray[i].nShow = parsedStorage.nShow[i];
+      }
+
+      if (totalClicks > 16) {
+        if (parsedStorage.Charts = true){
+          showResults();
+        }
+
+      } else if (totalClicks == 24) {
+        showResults();
+
+      }
+
+    } else {
+    var storageObjectOne = new makeStorageObject();
+    }//Main if Close
+} // checkStorage Close
