@@ -1,14 +1,17 @@
 
+var voteMore = false;
+var Charts = false;
+
 // Contructor to make Storage Objects
 
 function makeStorageObject(round) {
   this.round = round;
   this.totalClicks = 0;
   this.nClicksAll = [];
-  this.nShowAll = [];
+  this.percentAll = [];
   this.ImagesShown = []; // 2d array
-  this.voteMore = true;
-  this.Charts = true
+  this.voteMore = false;
+  this.Charts = false;
 }
 
 var storageObjectOne = new makeStorageObject(1);
@@ -26,4 +29,32 @@ var clickStore = function() {
   }
   storageObjectOne.nClicksAll = nClicksAllArray;
 
+  // get percentages from all Image Objects
+    for (var i = 0; i < catArray.length; i++) {
+      var percentAllArray = [];
+      var nShow = characterArray[i].nShow;
+      var p = 0;
+      if (nShow) {p = Math.floor((characterArray[i].nClicks/characterArray[i].nShow)*100);}
+      percentAllArray.push(p);
+    }
+
+    storageObjectOne.percentAll = percentAllArray;
+
+    // get attribute on images shown
+    var setOfThree = [];
+    setOfThree.push(imageOne.getAttribute('src'));
+    setOfThree.push(imageTwo.getAttribute('src'));
+    setOfThree.push(imageThree.getAttribute('src'));
+    storageObjectOne.ImagesShown.push(setOfThree);
+
+    //check if voteMore button has been clicked
+
+    if (voteMore) {
+      storageObjectOne.voteMore = true;
+    };
+
+// check if clicksChart object exists
+    if (typeOf clicksChart !== 'undefined') {
+      storageObjectOne.Charts = true;
+    }
 }
