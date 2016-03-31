@@ -37,9 +37,10 @@ var makeYAxis = function() {
 var makePercentChart = function() {
   for (var i = 0; i < characterArray.length; i++) {
 
-    var x = Math.floor((characterArray[i].nClicks/characterArray[i].nShow)*100);
-
-    percentArray.push(x);
+    var nShow = characterArray[i].nShow;
+    var p = 0;
+    if (nShow) {p = Math.floor((characterArray[i].nClicks/characterArray[i].nShow)*100);}
+    percentArray.push(p);
   }
 }
 
@@ -370,3 +371,7 @@ displayButton.addEventListener("click", showResults);
 voteMoreButton.addEventListener("click", eightMore);
 
 resetButton.addEventListener("click", newVoteRound);
+
+// LOCAL STORAGE
+
+// Consturctor for Objects
