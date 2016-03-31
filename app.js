@@ -244,6 +244,8 @@ function imageClicked() {
       // voteMoreButton <-- remove event listener here
       voteMoreButton.removeEventListener('click', eightMore);
       resetButton.setAttribute('style','visibility:visible');
+      clicksChartGlobal.destroy(); //Destroying the chart before showing it again to avoid having 2 layers of it
+      percentChartGlobal.destroy();
       showResults();
     }
   }
@@ -293,9 +295,10 @@ function eightMore() {
 
 function newVoteRound() {
 
+
   //hides reset button
   resetButton.setAttribute('style','visibility:hidden');
-  
+
   //destroys charts
   clicksChartGlobal.destroy();
   percentChartGlobal.destroy();

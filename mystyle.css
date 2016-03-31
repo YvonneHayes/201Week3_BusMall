@@ -37,3 +37,13 @@ h2 {
   font-family: 'Boogaloo', cursive;
   color: purple;
 }
+
+#clicksChart {
+  height: 400px;
+  width: 400px;
+}
+
+#percentChart {
+  height: 400px;
+  width: 400px;
+}
