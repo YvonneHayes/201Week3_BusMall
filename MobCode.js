@@ -72,19 +72,20 @@ var storeClicks = function() {
     if (typeOf clicksChart !== 'undefined') {
       storageObjectOne.Charts = true;
     }
-}
+} //storeClicks Function Closed
 
 //making a function that pushes storage Object into a local storage
 
 var storageIn = function (objectName) {
-  localStorage.setItem(JSON.stringify(objectName));
+  localStorage.setItem("storageObjectOne", JSON.stringify(objectName));
 }
 
 //making function that gets storage object out of local storage
 
 var storageOut = function (objectName) {
-  var pullStorage = localStorage.getItem(JSON.parse(objectName));
-  return pullStorage;
+  var pullStorage = localStorage.getItem(objectName);
+  var parseData = JSON.parse(pullStorage);
+  return parseData;
 }
 
 
@@ -97,7 +98,7 @@ var storageOut = function (objectName) {
 var checkStorage = function (){
 
   // restores last state if there is a history
-  if (typeOf localStorage.getItem('storageObjectOne')!== 'undefined') {      //checks if storageObjectOne is in local storage
+  if (typeof localStorage.getItem('storageObjectOne')!== 'undefined') {      //checks if storageObjectOne is in local storage
       var parsedStorage = storageOut();
 
         totalClicks = parsedStorage.totalClicks; // refills global variable totalClicks array

@@ -128,22 +128,17 @@ var clicks = 16;
 
 var x = true;
 
+//adding MobMerge variables
+var voteMore = false;
+var Charts = false;
+var storageObjectOne;
+
 //variables to set clicksChart and percentChart to be global in scope
 var clicksChartGlobal;
 var percentChartGlobal;
 
 //hides reset button
 resetButton.setAttribute('style','visibility:hidden');
-
-// /* ++++++  NOT USING RIGHT NOW BUT KEEPING IN CASE WANT LATER ++++++
-// variables for paragraph elements to be added per
-// image and add paragraph elements within html
-// */
-// var paraOne = document.getElementById('paraOne');
-// var paraTwo = document.getElementById('paraTwo');
-// var paraThree = document.getElementById('paraThree');
-// var paraFour = document.getElementById('paraFour');
-//
 
 
 
@@ -266,6 +261,99 @@ function makeImageObj(name, path) {
   this.nClicks = 0;
 }
 
+// Contructor to make Storage Objects
+
+function makeStorageObject() {
+  this.totalClicks = 0;
+  this.nClicksAll = [];
+  this.nShow = [];
+  this.percentAll = [];
+  this.ImagesShown = []; // 2d array
+  this.voteMore = false;
+  this.Charts = false;
+  this.processClick = true;
+}
+
+/*
+===========
+FUNCTIONS
+===========
+*/
+
+// Functions to fill Storage Objects
+
+var storeClicks = function() {
+
+  storageObjectOne.totalClicks = totalClicks;
+
+  // get nClicks from all Image Objects
+  var nClicksAllArray = [];
+  for (var i = 0; i < characterArray.length; i++) {
+    nClicksAllArray.push(characterArray[i].nClicks);
+  }
+  storageObjectOne.nClicksAll = nClicksAllArray;
+
+// get nShown from all Image Objects
+  var nShowAllArray = [];
+  for (var i = 0; i < characterArray.length; i++) {
+    nShowAllArray.push(characterArray[i].nShow);
+  }
+  storageObjectOne.nClicksAll = nClicksAllArray;
+
+  // get percentages from all Image Objects
+    for (var i = 0; i < characterArray.length; i++) {
+      var percentAllArray = [];
+      var nShow = characterArray[i].nShow;
+      var p = 0;
+      if (nShow) {p = Math.floor((characterArray[i].nClicks/characterArray[i].nShow)*100);}
+      percentAllArray.push(p);
+    }
+
+    storageObjectOne.percentAll = percentAllArray;
+
+    // get attribute on images shown
+    var setOfThree = [];
+    setOfThree.push(imageOne.getAttribute('src'));
+    setOfThree.push(imageTwo.getAttribute('src'));
+    setOfThree.push(imageThree.getAttribute('src'));
+    storageObjectOne.ImagesShown.push(setOfThree);
+
+    //check if voteMore button has been clicked
+
+    if (voteMore) {
+      storageObjectOne.voteMore = true;
+    };
+
+// check if processClick is true/false
+    if (processClick) {
+      storageObjectOne.processClick = true;
+    } else {
+      storageObjectOne.processClick = false;
+    }
+
+// check if clicksChartGlobal object exists
+    if (typeof clicksChartGlobal !== 'undefined') {
+      storageObjectOne.Charts = true;
+    }
+} //storeClicks Function Closed
+
+//making a function that pushes storage Object into a local storage
+
+var storageIn = function (objectName) {
+  localStorage.setItem("storageObjectOne",JSON.stringify(objectName));
+}
+
+//making function that gets storage object out of local storage
+
+var storageOut = function (objectName) {
+  var pullStorage = localStorage.getItem(objectName);
+  var parseData = JSON.parse(pullStorage);
+  return parseData;
+}
+
+
+
+
 /*
 random number generation to go through amount of images within
 constructors
@@ -297,45 +385,84 @@ function eightMore() {
 function newVoteRound() {
 
 
-  //hides reset button
-  resetButton.setAttribute('style','visibility:hidden');
+      //hides reset button
+      resetButton.setAttribute('style','visibility:hidden');
 
-  //destroys charts
-  clicksChartGlobal.destroy();
-  percentChartGlobal.destroy();
+      //destroys charts
+      clicksChartGlobal.destroy();
+      percentChartGlobal.destroy();
 
-  //resets all global variables
-  totalClicks = 0;
-  console.log(totalClicks);
-  processClick = true;
-  clicks = 16;
-  x = true;
-  console.log(clicks);
-  clicksChartGlobal = 0;
-  percentChartGlobal = 0;
+      //resets all global variables
+      totalClicks = 0;
+      console.log(totalClicks);
+      processClick = true;
+      clicks = 16;
+      x = true;
+      console.log(clicks);
+      clicksChartGlobal = 0;
+      percentChartGlobal = 0;
 
-  //resets all image object's counters
-  for (var i = 0; i < characterArray.length; i++) {
-    characterArray[i].nClicks = 0;
-    characterArray[i].nShow = 0;
-  }
+      //resets all image object's counters
+      for (var i = 0; i < characterArray.length; i++) {
+        characterArray[i].nClicks = 0;
+        characterArray[i].nShow = 0;
+      }
 
 
+      //repopulate image spaces
+      showRandomImg(imageOne);
+      showRandomImg(imageTwo);
+      showRandomImg(imageThree);
 
-  //repopulate image spaces
-  showRandomImg(imageOne);
-  showRandomImg(imageTwo);
-  showRandomImg(imageThree);
+      //rest chart data objects
+      barData.labels = [];
+      barDataPercent.labels = [];
 
-  //rest chart data objects
-  barData.labels = [];
-  barDataPercent.labels = [];
+      //add back in eventListeners
+      displayButton.addEventListener('click', showResults);
+      voteMoreButton.addEventListener('click', eightMore);
+} // Closed newVoteRound function
 
-  //add back in eventListeners
-  displayButton.addEventListener('click', showResults);
-  voteMoreButton.addEventListener('click', eightMore);
-}
+// making a function that checks local storage upon each click
 
+var checkStorage = function (){
+
+  // restores last state if there is a history
+  if (localStorage.getItem('storageObjectOne')) {      //checks if storageObjectOne is in local storage
+      var parsedStorage = storageOut("storageObjectOne");
+
+        totalClicks = parsedStorage.totalClicks; // refills global variable totalClicks array
+        percentArray = parsedStorage.percentAll; // refills global variable percent array
+        processClick = parsedStorage.processClick; // resets global variable processClick - is needed for imageClicked function!!!
+
+        //restore image slots
+        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][0]);
+        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][1]);
+        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][2]);
+
+      for (var i = 0; i < characterArray.length; i++) {
+
+        characterArray[i].nClicks = parsedStorage.nClicks[i];
+        characterArray[i].nShow = parsedStorage.nShow[i];
+      }
+
+      if (totalClicks > 16) {
+        if (parsedStorage.Charts = true){
+          showResults();
+        }
+
+      } else if (totalClicks == 24) {
+        showResults();
+
+      }
+
+    } else {
+    var storageObjectOne = new makeStorageObject(); // storageObjectOne is a global variable!!!!!!!
+    storageIn(storageObjectOne);
+    }//Main if Close
+} // checkStorage Close
+
+checkStorage(); // this checks at the beginning of everything or reload if there is an object in loal Storage
 
 
 
