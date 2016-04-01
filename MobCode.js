@@ -1,6 +1,7 @@
 
 var voteMore = false;
 var Charts = false;
+var storageObjectOne;
 
 // Contructor to make Storage Objects
 
@@ -119,6 +120,7 @@ var checkStorage = function (){
       }
 
     } else {
-    var storageObjectOne = new makeStorageObject();
+    var storageObjectOne = new makeStorageObject(); // storageObjectOne is a global variable!!!!!!!
+    storageIn(storageObjectOne);
     }//Main if Close
 } // checkStorage Close
