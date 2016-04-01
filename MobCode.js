@@ -98,7 +98,7 @@ var storageOut = function (objectName) {
 var checkStorage = function (){
 
   // restores last state if there is a history
-  if (typeof localStorage.getItem('storageObjectOne')!== 'undefined') {      //checks if storageObjectOne is in local storage
+  if (localStorage.getItem('storageObjectOne') {      //checks if storageObjectOne is in local storage
       var parsedStorage = storageOut();
 
         totalClicks = parsedStorage.totalClicks; // refills global variable totalClicks array
