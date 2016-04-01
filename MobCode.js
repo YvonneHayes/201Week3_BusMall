@@ -96,12 +96,18 @@ var storageOut = function (objectName) {
 
 var checkStorage = function (){
 
+  // restores last state if there is a history
   if (typeOf localStorage.getItem('storageObjectOne')!== 'undefined') {      //checks if storageObjectOne is in local storage
       var parsedStorage = storageOut();
 
         totalClicks = parsedStorage.totalClicks; // refills global variable totalClicks array
         percentArray = parsedStorage.percentAll; // refills global variable percent array
         processClick = parsedStorage.processClick; // resets global variable processClick - is needed for imageClicked function!!!
+
+        //restore image slots
+        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][0]);
+        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][1]);
+        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][2]);
 
       for (var i = 0; i < catArray.length; i++) {
 
@@ -124,3 +130,6 @@ var checkStorage = function (){
     storageIn(storageObjectOne);
     }//Main if Close
 } // checkStorage Close
+
+
+checkStorage(); // this checks at the beginning of everything or reload if there is an object in loal Storage
