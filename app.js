@@ -244,6 +244,8 @@ function imageClicked() {
       // voteMoreButton <-- remove event listener here
       voteMoreButton.removeEventListener('click', eightMore);
       resetButton.setAttribute('style','visibility:visible');
+      clicksChartGlobal.destroy();
+      percentChartGlobal.destroy();
       showResults();
     }
   }
@@ -295,7 +297,7 @@ function newVoteRound() {
 
   //hides reset button
   resetButton.setAttribute('style','visibility:hidden');
-  
+
   //destroys charts
   clicksChartGlobal.destroy();
   percentChartGlobal.destroy();
