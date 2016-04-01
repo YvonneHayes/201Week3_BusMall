@@ -76,8 +76,8 @@ var storeClicks = function() {
 
 //making a function that pushes storage Object into a local storage
 
-var storageIn = function (objectName) {
-  localStorage.setItem("storageObjectOne", JSON.stringify(objectName));
+var storageIn = function () {
+  localStorage.setItem("storageObjectOne", JSON.stringify(storageObjectOne));
 }
 
 //making function that gets storage object out of local storage

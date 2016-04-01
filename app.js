@@ -221,10 +221,13 @@ function imageClicked() {
   if (processClick) {
     totalClicks++;
 
+    // storeClicks();
 
     showRandomImg(imageOne);
     showRandomImg(imageTwo);
     showRandomImg(imageThree);
+
+
 
     if (totalClicks >= clicks && x && totalClicks < 24) {
       //code to display hidden button
@@ -339,8 +342,8 @@ var storeClicks = function() {
 
 //making a function that pushes storage Object into a local storage
 
-var storageIn = function (objectName) {
-  localStorage.setItem("storageObjectOne",JSON.stringify(objectName));
+var storageIn = function () {
+  localStorage.setItem("storageObjectOne",JSON.stringify(storageObjectOne));
 }
 
 //making function that gets storage object out of local storage
@@ -436,13 +439,13 @@ var checkStorage = function (){
         processClick = parsedStorage.processClick; // resets global variable processClick - is needed for imageClicked function!!!
 
         //restore image slots
-        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][0]);
-        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][1]);
-        imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][2]);
+        // imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][0]);
+        // imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][1]);
+        // imageOne.setAttribute('src', parsedStorage.ImagesShown[totalClicks][2]);
 
       for (var i = 0; i < characterArray.length; i++) {
 
-        characterArray[i].nClicks = parsedStorage.nClicks[i];
+        characterArray[i].nClicks = parsedStorage.nClicksAll[i];
         characterArray[i].nShow = parsedStorage.nShow[i];
       }
 
@@ -457,28 +460,12 @@ var checkStorage = function (){
       }
 
     } else {
-    var storageObjectOne = new makeStorageObject(); // storageObjectOne is a global variable!!!!!!!
-    storageIn(storageObjectOne);
+    storageObjectOne = new makeStorageObject(); // storageObjectOne is a global variable!!!!!!!
+    storageIn();
     }//Main if Close
 } // checkStorage Close
 
 checkStorage(); // this checks at the beginning of everything or reload if there is an object in loal Storage
-
-
-
-// Paragraphs that are now not needed anymore but I'd like to keep for now in case I
-// decide to do something with them later
-
-//   para1.textContent = "Link, Hero of Hyrule, Master of the Triforce has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para2.textContent = "Mario, the Plumber and Savior of Princesses has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para3.textContent = "Sonic the Hedgehog, Collector of golden Rings has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para4.textContent = "Geralt of Riviera, all-around bad A** has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para5.textContent = "Lara Croft, Raider of Tombs has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para6.textContent = "Commander Shepard of the Normandy, Savior of the Galaxy has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para7.textContent = "Assassin, Mr. multiple Personalities has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para8.textContent = "Donkey Kong, Kidnapper of Princesses has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//
-//
 
 
 /*
