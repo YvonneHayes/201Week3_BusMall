@@ -25,16 +25,17 @@ hr {
 
 #Header {
   margin-top: none;
-  background-color: purple;
+  background-color: lightgrey;
   width: 100%;
   border-bottom: 2px outset black;
   /*position: fixed;*/
 }
 
 #Header a {
-  color: white;
+  color: lightblue;
   text-decoration: none;
   font-size: 1.1em;
+  background-color: black;
 }
 
 #Header a:first-child {
@@ -54,10 +55,12 @@ hr {
 }
 
 #Header a:hover {
-    background-color: #111;
+    background-color: purple;
 }
 
 #Name {
+  font-family: 'Abril Fatface', cursive;
+  text-shadow: 2px 2px grey;
   text-align: center;
   line-height: 1em;
   padding: 10px;
@@ -74,14 +77,14 @@ hr {
 
 #Welcome {
   margin-top: 0;
-  background-color: grey;
   height: 200px;
   border: 4px;
   border-style: groove;
   border-color: black;
+  background-image: url("img/bus3.jpg");
 }
 
-#WelcomeText {
+/*#WelcomeText {
   text-align: center;
   line-height: 1em;
   padding: 10px;
@@ -89,7 +92,7 @@ hr {
   margin-left: 510px;
   margin-top: 60px;
   font-size: 2.3em;
-}
+}*/
 
 /*
 =======================================================
@@ -98,12 +101,13 @@ hr {
 */
 #Description {
   margin-top: 0;
-  height:250px;
-  background-color: lightgrey;
+  height:300px;
+  background-color: white;
   border: 2px outset black;
 }
 
 .DescriptionPs {
+  font-family: 'Cardo', serif;
   text-align: center;
   line-height: 1em;
   padding: 10px;
@@ -135,9 +139,11 @@ hr {
 }
 
 #DescriptionHL {
+  font-family: 'Abril Fatface', cursive;
   text-align: center;
   padding-top: 50px;
   padding-bottom: 50px;
+  font-size: 2.3em;
 }
 
 #Images img {
@@ -176,6 +182,7 @@ figure img {
 
 figure figcaption {
   text-size: 10px;
+  font-family: 'Cardo', serif;
   text-align: center;
 }
 
@@ -206,13 +213,18 @@ figure figcaption {
 */
 
 #Footer {
-  background-color: purple;
+  background-color: lightgrey;
   width: 100%;
   border-bottom: 2px outset black;
   height: 35px;
 }
 
 
+/*
+=======================================================
+=              SLIDING ANIMATION                      =
+=======================================================
+*/
 
 div.slide-left {
   width:100%;
@@ -220,7 +232,10 @@ div.slide-left {
 }
 div.slide-left p {
   animation: slide-left 10s;
+  font-family: 'Sonsie One', cursive;
   font-size: 3em;
+  color: white;
+  text-shadow: 4px 4px 5px black;
 }
 
 @keyframes slide-left {

@@ -6,34 +6,70 @@ body {
 
 
 #myButton, #voteMore {
-  visibility: hidden;
+  visibility: visible;
+  margin-top: 40px;
+  background-color: #6ACC79;
+  border-radius: 12px;
+  font-size: 1.2em;
+  border: 2px solid red;
 }
 
+.button:hover {
+    background-color: white;
+    color: white;
+}
+
+#myButton {
+  margin-left: 450px;
+}
+
+
 #characterPic1 {
-  width: 400px;
+  width: 350px;
   height: 400px;
   background-color: blue;
+  margin-left: 50px;
+  border: 8px solid black;
+  box-shadow: 10px 10px 5px grey;
 }
 
 #characterPic2 {
-  width: 400px;
+  width: 350px;
   height: 400px;
   background-color: blue;
+  margin-left: 50px;
+  border: 8px solid black;
+  box-shadow: 10px 10px 5px grey;
 }
 
 #characterPic3 {
-  width: 400px;
+  width: 350px;
   height: 400px;
   background-color: blue;
+  margin-left: 50px;
+  border: 8px solid black;
+  box-shadow: 10px 10px 5px grey;
 }
 
 h1 {
   font-family: 'Bangers', cursive;
   color: red;
-  text-shadow: 0 0 3px black;
+  text-shadow: 5px 5px 5px black;
+  margin-left: 180px;
+  font-size: 4.5em;
 }
 
 h2 {
   font-family: 'Boogaloo', cursive;
   color: purple;
+  margin-left: 200px;
+  margin-top: 30px;
+}
+
+#gameCharacters {
+  margin-top: 75px;
+}
+
+label {
+  visibility: hidden;
 }
