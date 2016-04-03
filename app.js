@@ -73,14 +73,16 @@ function showResults() {
   percentChartGlobal = new Chart(percentChart).Bar(barDataPercent);
   percentChart = percentChartGlobal;
 
+  ChartName1.setAttribute('style', 'visibility:visible');
+  ChartName2.setAttribute('style', 'visibility:visible');
 }
 
 var barData = {
 	labels : [], //these are our image titles or this.name
 	datasets : [
 		{
-			fillColor : "rgba(73,188,170,0.4)",
-			strokeColor : "rgba(72,174,209,0.4)",
+			fillColor : "rgba(63, 127, 191, 1)",
+			strokeColor : "rgba(12, 25, 38, 1)",
 			data : [] // clicks
 		}
 	]
@@ -90,8 +92,8 @@ var barDataPercent = {
   labels : [], //these are our image titles or this.name
   datasets : [
     {
-      fillColor : "rgba(73,188,170,0.4)",
-      strokeColor : "rgba(72,174,209,0.4)",
+      fillColor : "rgba(63, 127, 191, 1)",
+			strokeColor : "rgba(12, 25, 38, 1)",
       data : [] // clicks
     }
   ]
@@ -114,6 +116,8 @@ var imageThree = document.getElementById('characterPic3');
 var displayButton = document.getElementById('myButton');
 var voteMoreButton = document.getElementById('voteMore');
 var resetButton = document.getElementById('resetButton');
+var ChartName1 = document.getElementById('Chart1');
+var ChartName2 = document.getElementById('Chart2');
 
 var chart = document.getElementById('chart');
 
