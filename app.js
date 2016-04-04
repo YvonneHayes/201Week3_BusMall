@@ -4,15 +4,15 @@ canvas charts
 =============
 */
 
-//+++++++++++++
+
 //array to store labels for chart
 var labelArray = [];
 
-//++++++++++
+
 //array to store Yaxis or clicks numbers for chart
 var yAxisArray = [];
 
-//++++++++++++++++
+
 //array to store yaxis or percent click per show rate
 var percentArray = [];
 
@@ -32,7 +32,6 @@ var makeYAxis = function() {
   }
 }
 
-//++++++++++++++++++++
 //adding separate
 var makePercentChart = function() {
   for (var i = 0; i < characterArray.length; i++) {
@@ -45,7 +44,7 @@ var makePercentChart = function() {
 
 
 //function to show results
-//moved showResults function from function section
+
 function showResults() {
   //++++++++starting
 
@@ -63,7 +62,7 @@ function showResults() {
   //placed invocation of bar chart within showResults function
   var clicksChart = document.getElementById("clicksChart").getContext("2d");
   //+++++++++++++++++++++++++
-  //asssigning new chart to global variable so we can call destroy method on it
+  //asssigning new chart to global variable so I can call destroy method on it
   clicksChartGlobal = new Chart(clicksChart).Bar(barData);
   clicksChart = clicksChartGlobal;
 
@@ -78,7 +77,7 @@ function showResults() {
 }
 
 var barData = {
-	labels : [], //these are our image titles or this.name
+	labels : [], //these are the image titles or this.name
 	datasets : [
 		{
 			fillColor : "rgba(63, 127, 191, 1)",
@@ -89,7 +88,7 @@ var barData = {
 }
 
 var barDataPercent = {
-  labels : [], //these are our image titles or this.name
+  labels : [], //these are the image titles or this.name
   datasets : [
     {
       fillColor : "rgba(63, 127, 191, 1)",
@@ -137,17 +136,6 @@ var percentChartGlobal;
 
 //hides reset button
 resetButton.setAttribute('style','visibility:hidden');
-
-// /* ++++++  NOT USING RIGHT NOW BUT KEEPING IN CASE WANT LATER ++++++
-// variables for paragraph elements to be added per
-// image and add paragraph elements within html
-// */
-// var paraOne = document.getElementById('paraOne');
-// var paraTwo = document.getElementById('paraTwo');
-// var paraThree = document.getElementById('paraThree');
-// var paraFour = document.getElementById('paraFour');
-//
-
 
 
 // /*
@@ -208,7 +196,6 @@ imageTwo.onclick = function() {
   for (var i = 0; i < characterArray.length; i++) {
     if (srcValue == characterArray[i].path) {
       characterArray[i].nClicks++;
-      console.log(characterArray[i].path + " #$% " +characterArray[i].nClicks);
     }
   }
 }
@@ -239,8 +226,6 @@ function imageClicked() {
       displayButton.setAttribute('style','visibility:visible');
       voteMoreButton.setAttribute('style','visibility:visible');
       processClick = false;
-      //+++++++++++++++++++++++++++
-      //added in else statement here
     } else if (totalClicks === 24) {
       x = false;
       voteMoreButton.setAttribute('style', 'visibility:hidden');
@@ -249,7 +234,7 @@ function imageClicked() {
       voteMoreButton.removeEventListener('click', eightMore);
       resetButton.setAttribute('style','visibility:visible');
       clicksChartGlobal.destroy();
-      percentChartGlobal.destroy();
+      percentChartGlobal.destroy(); //destroying charts so they don't write on top of each other
       showResults();
     }
   }
@@ -308,11 +293,9 @@ function newVoteRound() {
 
   //resets all global variables
   totalClicks = 0;
-  console.log(totalClicks);
   processClick = true;
   clicks = 16;
   x = true;
-  console.log(clicks);
   clicksChartGlobal = 0;
   percentChartGlobal = 0;
 
@@ -338,22 +321,6 @@ function newVoteRound() {
   voteMoreButton.addEventListener('click', eightMore);
 }
 
-
-
-
-// Paragraphs that are now not needed anymore but I'd like to keep for now in case I
-// decide to do something with them later
-
-//   para1.textContent = "Link, Hero of Hyrule, Master of the Triforce has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para2.textContent = "Mario, the Plumber and Savior of Princesses has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para3.textContent = "Sonic the Hedgehog, Collector of golden Rings has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para4.textContent = "Geralt of Riviera, all-around bad A** has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para5.textContent = "Lara Croft, Raider of Tombs has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para6.textContent = "Commander Shepard of the Normandy, Savior of the Galaxy has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para7.textContent = "Assassin, Mr. multiple Personalities has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//   para8.textContent = "Donkey Kong, Kidnapper of Princesses has shown up " + characterArray[0].nShow + " times and has been voted for " + characterArray[0].nClicks + " times!"
-//
-//
 
 
 /*
